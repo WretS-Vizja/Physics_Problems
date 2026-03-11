@@ -5,42 +5,239 @@
 Given two vectors in 3D space: $\vec{a} = [2, 1, -3]$ and $\vec{b} = [4, -2, 1]$. Calculate:
 
 a) The magnitude of each vector.
-> **Solution:**
+**Problem**
+
+Find the magnitude (length) of vectors $\vec{a}$ and $\vec{b}$.
+
+> **Idea**
 >
-> Using the magnitude formula:
-> $$|\vec{v}| = \sqrt{v_x^2 + v_y^2 + v_z^2}$$
+> The magnitude of a vector in three-dimensional space is computed using the square root of the sum of the squares of its components.
 >
-> For vector $\vec{a}$:
-> $$|\vec{a}| = \sqrt{2^2 + 1^2 + (-3)^2} = \sqrt{4 + 1 + 9} = \mathbf{\sqrt{14}}$$
+> $$
+> |\vec{v}| = \sqrt{v_x^2 + v_y^2 + v_z^2}
+> $$
+
+> **Step 1 – Compute the magnitude of $\vec{a}$**
 >
-> For vector $\vec{b}$:
-> $$|\vec{b}| = \sqrt{4^2 + (-2)^2 + 1^2} = \sqrt{16 + 4 + 1} = \mathbf{\sqrt{21}}$$
+> $$
+> |\vec{a}| = \sqrt{2^2 + 1^2 + (-3)^2}
+> $$
+
+> **Step 2 – Square each component**
+>
+> $$
+> 2^2 = 4
+> $$
+>
+> $$
+> 1^2 = 1
+> $$
+>
+> $$
+> (-3)^2 = 9
+> $$
+
+> **Step 3 – Sum the squares**
+>
+> $$
+> 4 + 1 + 9 = 14
+> $$
+
+> **Step 4 – Take the square root**
+>
+> $$
+> |\vec{a}| = \sqrt{14}
+> $$
+
+> **Step 5 – Compute the magnitude of $\vec{b}$**
+>
+> $$
+> |\vec{b}| = \sqrt{4^2 + (-2)^2 + 1^2}
+> $$
+
+> **Step 6 – Square each component**
+>
+> $$
+> 4^2 = 16
+> $$
+>
+> $$
+> (-2)^2 = 4
+> $$
+>
+> $$
+> 1^2 = 1
+> $$
+
+> **Step 7 – Sum the squares**
+>
+> $$
+> 16 + 4 + 1 = 21
+> $$
+
+> **Step 8 – Take the square root**
+>
+> $$
+> |\vec{b}| = \sqrt{21}
+> $$
+
+> **Result**
+>
+> $$
+> |\vec{a}| = \sqrt{14}
+> $$
+>
+> $$
+> |\vec{b}| = \sqrt{21}
+> $$
+---
 
 b) The dot product $\vec{a} \cdot \vec{b}$.
-> **Solution:**
->
-> $$\vec{a} \cdot \vec{b} = (a_x \cdot b_x) + (a_y \cdot b_y) + (a_z \cdot b_z)$$
-> $$\vec{a} \cdot \vec{b} = (2 \cdot 4) + (1 \cdot -2) + (-3 \cdot 1)$$
-> $$\vec{a} \cdot \vec{b} = 8 - 2 - 3 = \mathbf{3}$$
+**Problem**
 
+Find the dot product of vectors $\vec{a}$ and $\vec{b}$.
+
+> **Idea**
+>
+> The dot product multiplies the corresponding components of the vectors and sums the results.
+>
+> $$
+> \vec{a} \cdot \vec{b} =
+> a_x b_x + a_y b_y + a_z b_z
+> $$
+
+> **Step 1 – Substitute the components**
+>
+> $$
+> (2)(4) + (1)(-2) + (-3)(1)
+> $$
+
+> **Step 2 – Multiply the components**
+>
+> $$
+> 8 - 2 - 3
+> $$
+
+> **Step 3 – Add the results**
+>
+> $$
+> 3
+> $$
+
+> **Result**
+>
+> $$
+> \vec{a} \cdot \vec{b} = 3
+> $$
+
+---
 c) The cross product $\vec{a} \times \vec{b}$.
-> **Solution:**
+**Problem**
+
+Find the cross product of the vectors $\vec{a}$ and $\vec{b}$.
+
+> **Idea**
 >
-> $$\vec{a} \times \vec{b} = \begin{vmatrix} \mathbf{\hat{i}} & \mathbf{\hat{j}} & \mathbf{\hat{k}} \\ 2 & 1 & -3 \\ 4 & -2 & 1 \end{vmatrix}$$
+> The cross product produces a vector that is perpendicular to both vectors.  
+> It can be computed using a determinant.
+
+> **Step 1 – Write the determinant**
 >
-> $$= \mathbf{\hat{i}}[(1)(1) - (-3)(-2)] - \mathbf{\hat{j}}[(2)(1) - (-3)(4)] + \mathbf{\hat{k}}[(2)(-2) - (1)(4)]$$
-> $$= \mathbf{\hat{i}}(1 - 6) - \mathbf{\hat{j}}(2 + 12) + \mathbf{\hat{k}}(-4 - 4)$$
-> $$= \mathbf{[-5, -14, -8]}$$
+> $$
+> \vec{a} \times \vec{b} =
+> \begin{vmatrix}
+> \hat{i} & \hat{j} & \hat{k} \\
+> 2 & 1 & -3 \\
+> 4 & -2 & 1
+> \end{vmatrix}
+> $$
+
+> **Step 2 – Expand the determinant**
+>
+> $$
+> \vec{a} \times \vec{b} 
+> =
+> \hat{i}(1 - 6)
+> -
+> \hat{j}(2 + 12)
+> +
+> \hat{k}(-4 - 4)
+> $$
+
+> **Step 3 – Compute each term**
+>
+> $$
+> = \hat{i}(1 - 6)
+> -
+> \hat{j}(2 + 12)
+> +
+> \hat{k}(-4 - 4)
+> $$
+
+> **Step 4 – Simplify**
+>
+> $$
+> = -5\hat{i} - 14\hat{j} - 8\hat{k}
+> $$
+
+> **Result**
+>
+> $$
+> \vec{a} \times \vec{b} = [-5,-14,-8] = -5\hat{i} -14\hat{j} -8\hat{k}
+> $$
+
+---
 
 d) The angle between vectors $\vec{a}$ and $\vec{b}$.
-> **Solution:**
->
-> $$\cos\theta = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}||\vec{b}|}$$
->
-> $$\cos\theta = \frac{3}{\sqrt{14}\sqrt{21}} = \frac{3}{\sqrt{294}}$$
->
-> $$\theta = \arccos\left(\frac{3}{\sqrt{294}}\right) \approx \mathbf{79.9^\circ}$$
+**Problem**
 
+Find the angle between vectors $\vec{a}$ and $\vec{b}$.
+
+> **Idea**
+>
+> The angle between two vectors can be computed using the dot product formula.
+>
+> $$
+> \cos\theta =
+> \frac{\vec{a} \cdot \vec{b}}{|\vec{a}| |\vec{b}|}
+> $$
+
+> **Step 1 – Substitute the known values**
+>
+> $$
+> \cos\theta =
+> \frac{3}{\sqrt{14}\sqrt{21}}
+> $$
+
+> **Step 2 – Combine the square roots**
+>
+> $$
+> \cos\theta =
+> \frac{3}{\sqrt{294}}
+> $$
+
+> **Step 3 – Compute the angle**
+>
+> $$
+> \theta =
+> \arccos\left(\frac{3}{\sqrt{294}}\right)
+> $$
+
+> **Step 4 – Numerical value**
+>
+> $$
+> \theta \approx 79.9^\circ
+> $$
+
+> **Result**
+>
+> The angle between the vectors is approximately
+>
+> $$
+> \theta \approx 79.9^\circ
+> $$
+>
+> The vectors form an **acute angle**.
 ## 2. Systems of Equations
 
 Find the values of $x$ and $y$ that satisfy both equations: $2x + 3y = 12$ and $x - y = 1$.
