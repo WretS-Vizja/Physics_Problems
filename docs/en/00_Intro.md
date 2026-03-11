@@ -393,6 +393,9 @@ The formula for the period of a simple pendulum is $T = 2\pi \sqrt{\frac{L}{g}}$
 > $$
 > g = \frac{4\pi^2 L}{T^2}
 > $$
+> 
+> Note for presentation: This rearrangement is crucial in physics labs to calculate the local acceleration due to gravity ($g$) by measuring the length ($L$) and the period ($T$) of a pendulum.
+> 
 
 ---
 
