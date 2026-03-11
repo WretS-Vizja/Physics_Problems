@@ -5,7 +5,8 @@
 Given two vectors in 3D space: $\vec{a} = [2, 1, -3]$ and $\vec{b} = [4, -2, 1]$. Calculate:
 
 a) The magnitude of each vector.
-**Problem**
+
+>**Problem**
 
 Find the magnitude (length) of vectors $\vec{a}$ and $\vec{b}$.
 
@@ -93,7 +94,8 @@ Find the magnitude (length) of vectors $\vec{a}$ and $\vec{b}$.
 ---
 
 b) The dot product $\vec{a} \cdot \vec{b}$.
-**Problem**
+
+>**Problem**
 
 Find the dot product of vectors $\vec{a}$ and $\vec{b}$.
 
@@ -132,7 +134,8 @@ Find the dot product of vectors $\vec{a}$ and $\vec{b}$.
 
 ---
 c) The cross product $\vec{a} \times \vec{b}$.
-**Problem**
+
+>**Problem**
 
 Find the cross product of the vectors $\vec{a}$ and $\vec{b}$.
 
@@ -188,7 +191,8 @@ Find the cross product of the vectors $\vec{a}$ and $\vec{b}$.
 ---
 
 d) The angle between vectors $\vec{a}$ and $\vec{b}$.
-**Problem**
+
+>**Problem**
 
 Find the angle between vectors $\vec{a}$ and $\vec{b}$.
 
@@ -240,18 +244,57 @@ Find the angle between vectors $\vec{a}$ and $\vec{b}$.
 ## 2. Systems of Equations
 
 Find the values of $x$ and $y$ that satisfy both equations: $2x + 3y = 12$ and $x - y = 1$.
-> **Solution:**
+> **Problem**
+
+Solve the system of two linear equations for $x$ and $y$.
+
+> **Idea**
 >
-> From $x - y = 1$, we can write:
-> $$x = y + 1$$
+> Use the substitution method: express one variable from the simpler equation and substitute it into the other.
+
+> **Step 1 – Isolate $x$ from the second equation**
 >
-> Substituting this into the first equation:
-> $$2(y + 1) + 3y = 12$$
-> $$2y + 2 + 3y = 12$$
-> $$5y = 10 \Rightarrow \mathbf{y = 2}$$
+> $$
+> x - y = 1 \implies x = y + 1
+> $$
+
+> **Step 2 – Substitute into the first equation**
 >
-> Then finding $x$:
-> $$x = 2 + 1 = \mathbf{3}$$
+> $$
+> 2(y + 1) + 3y = 12
+> $$
+
+> **Step 3 – Expand**
+>
+> $$
+> 2y + 2 + 3y = 12
+> $$
+
+> **Step 4 – Collect like terms**
+>
+> $$
+> 5y = 10
+> $$
+
+> **Step 5 – Solve for $y$**
+>
+> $$
+> y = 2
+> $$
+
+> **Step 6 – Solve for $x$**
+>
+> $$
+> x = y + 1 = 2 + 1 = 3
+> $$
+
+> **Result**
+>
+> $$
+> x = 3, \quad y = 2
+> $$
+
+---
 
 ## 3. Proportionality
 
