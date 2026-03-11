@@ -8,7 +8,7 @@ a) The magnitude of each vector.
 
 >**Problem**
 
-Find the magnitude (length) of vectors $\vec{a}$ and $\vec{b}$.
+> Find the magnitude (length) of vectors $\vec{a}$ and $\vec{b}$.
 
 > **Idea**
 >
@@ -97,7 +97,7 @@ b) The dot product $\vec{a} \cdot \vec{b}$.
 
 >**Problem**
 
-Find the dot product of vectors $\vec{a}$ and $\vec{b}$.
+> Find the dot product of vectors $\vec{a}$ and $\vec{b}$.
 
 > **Idea**
 >
@@ -137,7 +137,7 @@ c) The cross product $\vec{a} \times \vec{b}$.
 
 >**Problem**
 
-Find the cross product of the vectors $\vec{a}$ and $\vec{b}$.
+> Find the cross product of the vectors $\vec{a}$ and $\vec{b}$.
 
 > **Idea**
 >
@@ -194,7 +194,7 @@ d) The angle between vectors $\vec{a}$ and $\vec{b}$.
 
 >**Problem**
 
-Find the angle between vectors $\vec{a}$ and $\vec{b}$.
+> Find the angle between vectors $\vec{a}$ and $\vec{b}$.
 
 > **Idea**
 >
@@ -246,7 +246,7 @@ Find the angle between vectors $\vec{a}$ and $\vec{b}$.
 
 ## 2. Systems of Equations
 
-Find the values of $x$ and $y$ that satisfy both equations: $2x + 3y = 12$ and $x - y = 1$.
+> Find the values of $x$ and $y$ that satisfy both equations: $2x + 3y = 12$ and $x - y = 1$.
 
 > **Problem**
 
@@ -306,7 +306,7 @@ Consider the Universal Law of Gravitation: $F = G \frac{m_1 m_2}{r^2}$, where $F
 
 > **Problem**
 
-Find the new force $F'$ in terms of the original force $F$ after applying the given changes.
+> Find the new force $F'$ in terms of the original force $F$ after applying the given changes.
 
 > **Idea**
 >
@@ -361,16 +361,40 @@ Find the new force $F'$ in terms of the original force $F$ after applying the gi
 ## 4. Rearranging Formulas
 
 The formula for the period of a simple pendulum is $T = 2\pi \sqrt{\frac{L}{g}}$. Rearrange the equation give a formula for $g$ (acceleration due to gravity).
-> **Solution:**
+
+> **Problem**
+
+> Isolate $g$ (acceleration due to gravity) from the pendulum period formula.
+
+> **Idea**
 >
-> 1. Divide both sides by $2\pi$:
-> $$\frac{T}{2\pi} = \sqrt{\frac{L}{g}}$$
+> Algebraically rearrange by squaring both sides and isolating $g$.
+
+> **Step 1 – Square both sides**
 >
-> 2. Square both sides to remove the square root:
-> $$\frac{T^2}{4\pi^2} = \frac{L}{g}$$
+> $$
+> T^2 = 4\pi^2 \frac{L}{g}
+> $$
+
+> **Step 2 – Multiply both sides by $g$**
 >
-> 3. Multiply by $g$ and divide by the left side to isolate $g$:
-> $$\mathbf{g = \frac{4\pi^2 L}{T^2}}$$
+> $$
+> T^2 \cdot g = 4\pi^2 L
+> $$
+
+> **Step 3 – Divide both sides by $T^2$**
+>
+> $$
+> g = \frac{4\pi^2 L}{T^2}
+> $$
+
+> **Result**
+>
+> $$
+> g = \frac{4\pi^2 L}{T^2}
+> $$
+
+---
 
 ## 5. Trigonometry
 
