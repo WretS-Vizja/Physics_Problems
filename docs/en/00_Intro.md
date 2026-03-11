@@ -250,7 +250,7 @@ Find the values of $x$ and $y$ that satisfy both equations: $2x + 3y = 12$ and $
 
 > **Problem**
 
-Solve the system of two linear equations for $x$ and $y$.
+> Solve the system of two linear equations for $x$ and $y$.
 
 > **Idea**
 >
