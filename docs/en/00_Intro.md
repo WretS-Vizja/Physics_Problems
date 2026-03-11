@@ -241,9 +241,13 @@ Find the angle between vectors $\vec{a}$ and $\vec{b}$.
 > $$
 >
 > The vectors form an **acute angle**.
+
+---
+
 ## 2. Systems of Equations
 
 Find the values of $x$ and $y$ that satisfy both equations: $2x + 3y = 12$ and $x - y = 1$.
+
 > **Problem**
 
 Solve the system of two linear equations for $x$ and $y$.
@@ -299,14 +303,60 @@ Solve the system of two linear equations for $x$ and $y$.
 ## 3. Proportionality
 
 Consider the Universal Law of Gravitation: $F = G \frac{m_1 m_2}{r^2}$, where $F$ is the gravitational force between two masses $m_1$ and $m_2$, $r$ is the distance between their centers, and $G$ is the gravitational constant. Determine the factor by which the force $F$ changes if the distance $r$ is *doubled* and both masses ($m_1$ and $m_2$) are *halved*.
-> **Solution:**
+
+> **Problem**
+
+Find the new force $F'$ in terms of the original force $F$ after applying the given changes.
+
+> **Idea**
 >
-> Let the new force be $F'$:
-> $$F' = G \frac{(\frac{1}{2}m_1)(\frac{1}{2}m_2)}{(2r)^2}$$
+> Substitute the transformed quantities into the formula and compare with the original.
+
+> **Step 1 – Write the original force**
 >
-> $$F' = G \frac{\frac{1}{4}m_1 m_2}{4r^2} = \frac{1}{16} \left( G \frac{m_1 m_2}{r^2} \right)$$
+> $$
+> F = G \frac{m_1 m_2}{r^2}
+> $$
+
+> **Step 2 – Apply the changes**
 >
-> **Result:** The force $F$ decreases by a factor of **16**.
+> $$
+> m_1' = \frac{m_1}{2}, \quad m_2' = \frac{m_2}{2}, \quad r' = 2r
+> $$
+
+> **Step 3 – Write the new force**
+>
+> $$
+> F' = G \frac{\left(\dfrac{m_1}{2}\right)\left(\dfrac{m_2}{2}\right)}{(2r)^2}
+> $$
+
+> **Step 4 – Simplify the numerator**
+>
+> $$
+> F' = G \frac{\dfrac{m_1 m_2}{4}}{4r^2}
+> $$
+
+> **Step 5 – Simplify the full expression**
+>
+> $$
+> F' = G \frac{m_1 m_2}{16 r^2}
+> $$
+
+> **Step 6 – Compare with original**
+>
+> $$
+> F' = \frac{1}{16} \cdot G \frac{m_1 m_2}{r^2} = \frac{F}{16}
+> $$
+
+> **Result**
+>
+> The gravitational force decreases by a factor of **16**.
+>
+> $$
+> F' = \frac{F}{16}
+> $$
+
+---
 
 ## 4. Rearranging Formulas
 
