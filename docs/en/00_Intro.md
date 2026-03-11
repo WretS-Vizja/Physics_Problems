@@ -72,18 +72,58 @@ Consider the Universal Law of Gravitation: $F = G \frac{m_1 m_2}{r^2}$, where $F
 ## 4. Rearranging Formulas
 
 The formula for the period of a simple pendulum is $T = 2\pi \sqrt{\frac{L}{g}}$. Rearrange the equation give a formula for $g$ (acceleration due to gravity).
+> **Solution:**
+>
+> 1. Divide both sides by $2\pi$:
+> $$\frac{T}{2\pi} = \sqrt{\frac{L}{g}}$$
+>
+> 2. Square both sides to remove the square root:
+> $$\frac{T^2}{4\pi^2} = \frac{L}{g}$$
+>
+> 3. Multiply by $g$ and divide by the left side to isolate $g$:
+> $$\mathbf{g = \frac{4\pi^2 L}{T^2}}$$
 
 ## 5. Trigonometry
 
 A vector $\vec{A}$ has a magnitude of $15$ and makes an angle of $\theta = 60^\circ$ with the horizontal axis. Calculate its horizontal and vertical components.
+> **Solution:**
+>
+> Horizontal component ($A_x$):
+> $$A_x = A \cdot \cos(\theta) = 15 \cdot \cos(60^\circ)$$
+> $$A_x = 15 \cdot 0.5 = \mathbf{7.5}$$
+>
+> Vertical component ($A_y$):
+> $$A_y = A \cdot \sin(\theta) = 15 \cdot \sin(60^\circ)$$
+> $$A_y = 15 \cdot \frac{\sqrt{3}}{2} \approx \mathbf{12.99}$$
 
 ## 6. Function Analysis
 
 Consider the function $f(x) = 3x^2 - 12x + 7$. Identify any local maxima or minima.
+> **Solution:**
+>
+> 1. Find the first derivative and set it to zero:
+> $$f'(x) = 6x - 12$$
+> $$6x - 12 = 0 \Rightarrow \mathbf{x = 2}$$
+>
+> 2. Check the second derivative for the type of extremum:
+> $$f''(x) = 6$$
+> Since $f''(x) > 0$, the function has a **local minimum** at $x = 2$.
+>
+> 3. Find the $y$-value:
+> $$f(2) = 3(2)^2 - 12(2) + 7 = 12 - 24 + 7 = \mathbf{-5}$$
+> **Result:** Local minimum at $(2, -5)$.
 
 ## 7. Logic & Series
 
 A bicycle is 10 meters from a wall and moves towards it at a constant speed of $1\text{ m/s}$. A fly starts from the bicycle's front wheel and flies towards the wall at $2\text{ m/s}$. When it hits the wall, it instantly turns back and flies to the bicycle, and so on. What is the total distance the fly travels before being crushed?
+> **Solution:**
+>
+> Instead of summing an infinite series, we look at the total time:
+> 1. Time for the bicycle to reach the wall:
+> $$t = \frac{\text{distance}}{\text{speed}} = \frac{10\text{ m}}{1\text{ m/s}} = 10\text{ s}$$
+>
+> 2. The fly travels at a constant speed of $2\text{ m/s}$ during this entire 10 seconds:
+> $$\text{Distance} = \text{speed} \cdot \text{time} = 2\text{ m/s} \cdot 10\text{ s} = \mathbf{20\text{ m}}$$
 
 ## 8. Definite Integrals
 
