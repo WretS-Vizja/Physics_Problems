@@ -1,5 +1,5 @@
 # Section 0: Mathematical Foundations
-
+> This document contains solutions to the mathematical foundations problems used in the Physics Problems repository. The goal is to review the essential mathematical tools required for solving physics problems.
 ## 1. Vector Algebra
 
 Given two vectors in 3D space: $\vec{a} = [2, 1, -3]$ and $\vec{b} = [4, -2, 1]$. Calculate:
@@ -124,6 +124,9 @@ A bicycle is 10 meters from a wall and moves towards it at a constant speed of $
 >
 > 2. The fly travels at a constant speed of $2\text{ m/s}$ during this entire 10 seconds:
 > $$\text{Distance} = \text{speed} \cdot \text{time} = 2\text{ m/s} \cdot 10\text{ s} = \mathbf{20\text{ m}}$$
+>
+> Result: The fly travels 20 meters.
+> This method avoids summing an infinite series.
 
 ## 8. Definite Integrals
 
