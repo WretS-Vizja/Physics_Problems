@@ -574,29 +574,114 @@ Calculate the area under the curve of the function $f(x) = \sin(x)$ from $x=0$ t
 ## 9. Optimization Problem
 
 A rectangle is under the curve $y = 3 - x^2$ in the first quadrant. What are the dimensions of the rectangle with the maximum area?
-> **Solution:**
->
-> Area $A = x \cdot y = x(3 - x^2) = 3x - x^3$
->
-> 1. Find the derivative of the area:
-> $$A'(x) = 3 - 3x^2$$
->
-> 2. Set $A'(x) = 0$:
-> $$3 - 3x^2 = 0 \Rightarrow x^2 = 1 \Rightarrow \mathbf{x = 1}$$
->
-> 3. Calculate $y$:
-> $$y = 3 - (1)^2 = \mathbf{2}$$
-> **Dimensions:** $1 \times 2$.
 
+> **Problem**
+
+> Maximize the area of a rectangle with one corner at the origin and the opposite corner on $y = 3 - x^2$.
+
+> **Idea**
+>
+> Express the area as a function of $x$, then differentiate and find the critical point.
+
+> **Step 1 – Write the area function**
+>
+> The rectangle has width $x$ and height $y = 3 - x^2$.
+>
+> $$
+> A(x) = x \cdot (3 - x^2) = 3x - x^3
+> $$
+
+> **Step 2 – Differentiate**
+>
+> $$
+> A'(x) = 3 - 3x^2
+> $$
+
+> **Step 3 – Set $A'(x) = 0$**
+>
+> $$
+> 3 - 3x^2 = 0 \implies x^2 = 1 \implies x = 1
+> $$
+>
+> (Taking the positive root since we are in the first quadrant.)
+
+> **Step 4 – Find the corresponding height**
+>
+> $$
+> y = 3 - (1)^2 = 2
+> $$
+
+> **Step 5 – Verify it is a maximum using the second derivative**
+>
+> $$
+> A''(x) = -6x \implies A''(1) = -6 < 0 \quad \checkmark
+> $$
+
+> **Result**
+>
+> The rectangle with maximum area has dimensions:
+>
+> $$
+> \text{width} = 1, \quad \text{height} = 2, \quad A_{\max} = 2
+> $$
+
+---
 ## 10. Infinite Series
 
 Determine the final position of an ant that starts at the origin and moves according to the following pattern: 1 m east, 1/2 m north, 1/3 m west, 1/4 m south, 1/5 m east, and so on.
-> **Solution:**
+
+> **Problem**
+
+> Find the final $(x, y)$ position of the ant after infinitely many moves.
+
+> **Idea**
 >
-> **x-coordinate (East/West):**
-> $$x = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \dots = \sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1} = \mathbf{\frac{\pi}{4}}$$
+> Separate the east–west (x) and north–south (y) displacements. The direction pattern repeats every 4 steps: East → North → West → South.
+
+> **Step 1 – Identify the x-direction terms**
 >
-> **y-coordinate (North/South):**
-> $$y = \frac{1}{2} - \frac{1}{4} + \frac{1}{6} - \frac{1}{8} + \dots = \frac{1}{2} \left( 1 - \frac{1}{2} + \frac{1}{3} - \dots \right) = \frac{1}{2} \ln(2) = \mathbf{\ln(\sqrt{2})}$$
+> East steps (positive $x$): terms $1, 5, 9, \ldots$ → $\dfrac{1}{1}, \dfrac{1}{5}, \dfrac{1}{9}, \ldots$
 >
-> **Final Position:** $(\frac{\pi}{4}, \ln\sqrt{2}) \approx (0.785, 0.347)$
+> West steps (negative $x$): terms $3, 7, 11, \ldots$ → $\dfrac{1}{3}, \dfrac{1}{7}, \dfrac{1}{11}, \ldots$
+
+> **Step 2 – Write the net x-displacement**
+>
+> $$
+> x = \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \cdots\right) = \sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1}
+> $$
+
+> **Step 3 – Identify this as the Leibniz series**
+>
+> $$
+> \sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1} = \frac{\pi}{4}
+> $$
+
+> **Step 4 – Identify the y-direction terms**
+>
+> North steps (positive $y$): terms $2, 6, 10, \ldots$ → $\dfrac{1}{2}, \dfrac{1}{6}, \dfrac{1}{10}, \ldots$
+>
+> South steps (negative $y$): terms $4, 8, 12, \ldots$ → $\dfrac{1}{4}, \dfrac{1}{8}, \dfrac{1}{12}, \ldots$
+
+> **Step 5 – Write the net y-displacement**
+>
+> $$
+> y = \frac{1}{2} - \frac{1}{4} + \frac{1}{6} - \frac{1}{8} + \cdots = \frac{1}{2}\left(1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots\right)
+> $$
+
+> **Step 6 – Apply the known alternating harmonic series**
+>
+> $$
+> 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots = \ln 2
+> $$
+>
+> $$
+> y = \frac{\ln 2}{2}
+> $$
+
+> **Result**
+>
+> The ant's final position is:
+>
+> $$
+> \left(\frac{\pi}{4},\ \frac{\ln 2}{2}\right) \approx (0.785,\ 0.347)
+> $$
