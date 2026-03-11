@@ -399,57 +399,177 @@ The formula for the period of a simple pendulum is $T = 2\pi \sqrt{\frac{L}{g}}$
 ## 5. Trigonometry
 
 A vector $\vec{A}$ has a magnitude of $15$ and makes an angle of $\theta = 60^\circ$ with the horizontal axis. Calculate its horizontal and vertical components.
-> **Solution:**
+> **Problem**
+
+> Find the $x$ and $y$ components of vector $\vec{A}$.
+
+> **Idea**
 >
-> Horizontal component ($A_x$):
-> $$A_x = A \cdot \cos(\theta) = 15 \cdot \cos(60^\circ)$$
-> $$A_x = 15 \cdot 0.5 = \mathbf{7.5}$$
+> The components of a vector are found using trigonometric projections.
 >
-> Vertical component ($A_y$):
-> $$A_y = A \cdot \sin(\theta) = 15 \cdot \sin(60^\circ)$$
-> $$A_y = 15 \cdot \frac{\sqrt{3}}{2} \approx \mathbf{12.99}$$
+> $$
+> A_x = |\vec{A}|\cos\theta, \quad A_y = |\vec{A}|\sin\theta
+> $$
+
+> **Step 1 – Compute the horizontal component**
+>
+> $$
+> A_x = 15 \cos 60^\circ
+> $$
+
+> **Step 2 – Substitute the known value $\cos 60^\circ = 0.5$**
+>
+> $$
+> A_x = 15 \times 0.5 = 7.5
+> $$
+
+> **Step 3 – Compute the vertical component**
+>
+> $$
+> A_y = 15 \sin 60^\circ
+> $$
+
+> **Step 4 – Substitute the known value $\sin 60^\circ = \dfrac{\sqrt{3}}{2}$**
+>
+> $$
+> A_y = 15 \times \frac{\sqrt{3}}{2} = \frac{15\sqrt{3}}{2} \approx 12.99
+> $$
+
+> **Result**
+>
+> $$
+> A_x = 7.5, \quad A_y = \frac{15\sqrt{3}}{2} \approx 12.99
+> $$
+
+---
 
 ## 6. Function Analysis
 
 Consider the function $f(x) = 3x^2 - 12x + 7$. Identify any local maxima or minima.
-> **Solution:**
+> **Problem**
+
+> Find the local extrema of the function $f(x)$.
+
+> **Idea**
 >
-> 1. Find the first derivative and set it to zero:
-> $$f'(x) = 6x - 12$$
-> $$6x - 12 = 0 \Rightarrow \mathbf{x = 2}$$
+> To find extrema, take the first derivative, set it equal to zero, and use the second derivative to classify the critical point.
+
+> **Step 1 – Compute the first derivative**
 >
-> 2. Check the second derivative for the type of extremum:
-> $$f''(x) = 6$$
-> Since $f''(x) > 0$, the function has a **local minimum** at $x = 2$.
+> $$
+> f'(x) = 6x - 12
+> $$
+
+> **Step 2 – Set $f'(x) = 0$ and solve**
 >
-> 3. Find the $y$-value:
-> $$f(2) = 3(2)^2 - 12(2) + 7 = 12 - 24 + 7 = \mathbf{-5}$$
-> **Result:** Local minimum at $(2, -5)$.
+> $$
+> 6x - 12 = 0 \implies x = 2
+> $$
+
+> **Step 3 – Compute the second derivative**
+>
+> $$
+> f''(x) = 6
+> $$
+
+> **Step 4 – Classify the critical point**
+>
+> Since $f''(2) = 6 > 0$, the function is concave up at $x = 2$, so it is a **local minimum**.
+
+> **Step 5 – Find the function value at the minimum**
+>
+> $$
+> f(2) = 3(4) - 12(2) + 7 = 12 - 24 + 7 = -5
+> $$
+
+> **Result**
+>
+> The function has a **local minimum** at $(2,\ -5)$.  
+> There is no local maximum (the parabola opens upward).
+
+---
 
 ## 7. Logic & Series
 
 A bicycle is 10 meters from a wall and moves towards it at a constant speed of $1\text{ m/s}$. A fly starts from the bicycle's front wheel and flies towards the wall at $2\text{ m/s}$. When it hits the wall, it instantly turns back and flies to the bicycle, and so on. What is the total distance the fly travels before being crushed?
-> **Solution:**
+
+> **Problem**
+
+> Find the total distance traveled by the fly before the bicycle reaches the wall.
+
+> **Idea**
 >
-> Instead of summing an infinite series, we look at the total time:
-> 1. Time for the bicycle to reach the wall:
-> $$t = \frac{\text{distance}}{\text{speed}} = \frac{10\text{ m}}{1\text{ m/s}} = 10\text{ s}$$
+> Instead of summing the infinite back-and-forth trips, use a time argument: the fly travels for the same total duration as the bicycle's journey.
+
+> **Step 1 – Find the time until the bicycle reaches the wall**
 >
-> 2. The fly travels at a constant speed of $2\text{ m/s}$ during this entire 10 seconds:
-> $$\text{Distance} = \text{speed} \cdot \text{time} = 2\text{ m/s} \cdot 10\text{ s} = \mathbf{20\text{ m}}$$
+> $$
+> t = \frac{d}{v} = \frac{10\ \text{m}}{1\ \text{m/s}} = 10\ \text{s}
+> $$
+
+> **Step 2 – Compute the total distance of the fly**
 >
-> Result: The fly travels 20 meters.
-> This method avoids summing an infinite series.
+> The fly travels at $2\ \text{m/s}$ for the entire $10\ \text{s}$.
+>
+> $$
+> d_{\text{fly}} = v_{\text{fly}} \times t = 2 \times 10 = 20\ \text{m}
+> $$
+
+> **Result**
+>
+> The fly travels a total distance of $\mathbf{20\ \text{m}}$.
+
+---
 
 ## 8. Definite Integrals
 
 Calculate the area under the curve of the function $f(x) = \sin(x)$ from $x=0$ to $x=\pi$.
-> **Solution:**
+
+> **Problem**
+
+> Evaluate the definite integral $\displaystyle\int_0^{\pi} \sin(x)\ dx$.
+
+> **Idea**
 >
-> $$\text{Area} = \int_{0}^{\pi} \sin(x) \, dx$$
-> $$\text{Area} = [-\cos(x)]_{0}^{\pi}$$
-> $$\text{Area} = (-\cos(\pi)) - (-\cos(0))$$
-> $$\text{Area} = (-(-1)) - (-1) = 1 + 1 = \mathbf{2}$$
+> Use the antiderivative of $\sin(x)$, which is $-\cos(x)$, and apply the fundamental theorem of calculus.
+
+> **Step 1 – Write the integral**
+>
+> $$
+> \int_0^{\pi} \sin(x)\ dx
+> $$
+
+> **Step 2 – Find the antiderivative**
+>
+> $$
+> \int \sin(x)\ dx = -\cos(x)
+> $$
+
+> **Step 3 – Evaluate at the bounds**
+>
+> $$
+> \Big[-\cos(x)\Big]_0^{\pi} = -\cos(\pi) - (-\cos(0))
+> $$
+
+> **Step 4 – Substitute known values**
+>
+> $$
+> \cos(\pi) = -1, \quad \cos(0) = 1
+> $$
+>
+> $$
+> = -(-1) + 1 = 1 + 1 = 2
+> $$
+
+> **Result**
+>
+> $$
+> \int_0^{\pi} \sin(x)\ dx = 2
+> $$
+>
+> The area under the curve is $\mathbf{2}$ square units.
+
+---
 
 ## 9. Optimization Problem
 
