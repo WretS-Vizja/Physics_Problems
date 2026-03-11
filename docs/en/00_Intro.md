@@ -155,23 +155,22 @@ Find the cross product of the vectors $\vec{a}$ and $\vec{b}$.
 > **Step 2 – Expand the determinant**
 >
 > $$
-> \vec{a} \times \vec{b} 
-> =
-> \hat{i}(1 - 6)
-> -
-> \hat{j}(2 + 12)
-> +
-> \hat{k}(-4 - 4)
+> \begin{aligned}
+> \vec{a} \times \vec{b} &=
+> \hat{i}(1\cdot1 - (-3)(-2)) \\
+> &\quad - \hat{j}(2\cdot1 - (-3)\cdot4) \\
+> &\quad + \hat{k}(2\cdot(-2) - 1\cdot4)
+> \end{aligned}
 > $$
 
 > **Step 3 – Compute each term**
 >
 > $$
-> = \hat{i}(1 - 6)
-> -
-> \hat{j}(2 + 12)
-> +
-> \hat{k}(-4 - 4)
+> \begin{aligned}
+> &= \hat{i}(1 - 6) \\
+> &\quad - \hat{j}(2 + 12) \\
+> &\quad + \hat{k}(-4 - 4)
+> \end{aligned}
 > $$
 
 > **Step 4 – Simplify**
