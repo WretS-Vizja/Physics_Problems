@@ -128,11 +128,39 @@ A bicycle is 10 meters from a wall and moves towards it at a constant speed of $
 ## 8. Definite Integrals
 
 Calculate the area under the curve of the function $f(x) = \sin(x)$ from $x=0$ to $x=\pi$.
+> **Solution:**
+>
+> $$\text{Area} = \int_{0}^{\pi} \sin(x) \, dx$$
+> $$\text{Area} = [-\cos(x)]_{0}^{\pi}$$
+> $$\text{Area} = (-\cos(\pi)) - (-\cos(0))$$
+> $$\text{Area} = (-(-1)) - (-1) = 1 + 1 = \mathbf{2}$$
 
 ## 9. Optimization Problem
 
 A rectangle is under the curve $y = 3 - x^2$ in the first quadrant. What are the dimensions of the rectangle with the maximum area?
+> **Solution:**
+>
+> Area $A = x \cdot y = x(3 - x^2) = 3x - x^3$
+>
+> 1. Find the derivative of the area:
+> $$A'(x) = 3 - 3x^2$$
+>
+> 2. Set $A'(x) = 0$:
+> $$3 - 3x^2 = 0 \Rightarrow x^2 = 1 \Rightarrow \mathbf{x = 1}$$
+>
+> 3. Calculate $y$:
+> $$y = 3 - (1)^2 = \mathbf{2}$$
+> **Dimensions:** $1 \times 2$.
 
 ## 10. Infinite Series
 
 Determine the final position of an ant that starts at the origin and moves according to the following pattern: 1 m east, 1/2 m north, 1/3 m west, 1/4 m south, 1/5 m east, and so on.
+> **Solution:**
+>
+> **x-coordinate (East/West):**
+> $$x = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \dots = \sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1} = \mathbf{\frac{\pi}{4}}$$
+>
+> **y-coordinate (North/South):**
+> $$y = \frac{1}{2} - \frac{1}{4} + \frac{1}{6} - \frac{1}{8} + \dots = \frac{1}{2} \left( 1 - \frac{1}{2} + \frac{1}{3} - \dots \right) = \frac{1}{2} \ln(2) = \mathbf{\ln(\sqrt{2})}$$
+>
+> **Final Position:** $(\frac{\pi}{4}, \ln\sqrt{2}) \approx (0.785, 0.347)$
