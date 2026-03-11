@@ -156,10 +156,10 @@ Find the cross product of the vectors $\vec{a}$ and $\vec{b}$.
 >
 > $$
 > \begin{aligned}
-> \vec{a} \times \vec{b} &=
-> \hat{i}(1\cdot1 - (-3)(-2)) \\
-> &\quad - \hat{j}(2\cdot1 - (-3)\cdot4) \\
-> &\quad + \hat{k}(2\cdot(-2) - 1\cdot4)
+> \vec{a} \times \vec{b}
+> &= \hat{i}(1\cdot1 - (-3)(-2)) \\
+> &- \hat{j}(2\cdot1 - (-3)\cdot4) \\
+> &+ \hat{k}(2\cdot(-2) - 1\cdot4)
 > \end{aligned}
 > $$
 
@@ -168,8 +168,8 @@ Find the cross product of the vectors $\vec{a}$ and $\vec{b}$.
 > $$
 > \begin{aligned}
 > &= \hat{i}(1 - 6) \\
-> &\quad - \hat{j}(2 + 12) \\
-> &\quad + \hat{k}(-4 - 4)
+> &- \hat{j}(2 + 12) \\
+> &+ \hat{k}(-4 - 4)
 > \end{aligned}
 > $$
 
