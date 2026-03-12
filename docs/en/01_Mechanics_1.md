@@ -143,6 +143,10 @@ A projectile is fired from the ground with an initial velocity of $100  \text{ m
 > $$
 > R \approx 980 \text{ m}
 > $$
+>
+> <div align="center">
+>  <img src="mechanics_q1_projectile.png" width="650">
+> </div>
 
 ---
 
@@ -254,7 +258,10 @@ Alice is moving along a path described by $A(t) = (2+t, 8-3t)$ and Bob is moving
 > **Result**
 >
 > The **paths intersect** at the point $\left(\dfrac{11}{4},\ \dfrac{23}{4}\right)$, but Alice and Bob are **never there at the same time** — they do **not collide**.
-
+>
+> <div align="center">
+>  <img src="mechanics_q3_paths.png" width="550">
+> </div>
 ---
 
 ## 4. Vector Calculus
@@ -605,5 +612,9 @@ c) Draw the trajectory of this point using Python or interactive HTML. Discuss s
 > **Idea**
 >
 > Plot the 3D helix using matplotlib, and show the special cases $a = b$ (circular helix) and $a \neq b$ (elliptic helix).
+>
+> <div align="center">
+>  <img src="mechanics_q10_helix.png" width="700">
+> </div>
 
 
