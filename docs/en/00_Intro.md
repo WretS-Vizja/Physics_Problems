@@ -187,6 +187,10 @@ c) The cross product $\vec{a} \times \vec{b}$.
 > $$
 > \vec{a} \times \vec{b} = [-5,-14,-8] = -5\hat{i} -14\hat{j} -8\hat{k}
 > $$
+>
+> <div align="center">
+>  <img src="intro_q1cd_crossproduct.png" width="400">
+> </div>
 
 ---
 
@@ -242,11 +246,7 @@ d) The angle between vectors $\vec{a}$ and $\vec{b}$.
 >
 > The vectors form an **acute angle**.
 >
-> <div align="center">
->  <img src="intro_q1cd_crossproduct.png" width="400">
-> </div>
 
- 
 ---
 
 ## 2. Systems of Equations
@@ -401,6 +401,9 @@ The formula for the period of a simple pendulum is $T = 2\pi \sqrt{\frac{L}{g}}$
 > 
 > Note for presentation: This rearrangement is crucial in physics labs to calculate the local acceleration due to gravity ($g$) by measuring the length ($L$) and the period ($T$) of a pendulum.
 > 
+> <div align="center">
+>  <img src="intro_q4_pendulum.png" width="600">
+> </div>
 
 ---
 
@@ -483,6 +486,10 @@ Consider the function $f(x) = 3x^2 - 12x + 7$. Identify any local maxima or mini
 > **Step 4 – Classify the critical point**
 >
 > Since $f''(2) = 6 > 0$, the function is concave up at $x = 2$, so it is a **local minimum**.
+>
+> <div align="center">
+>  <img src="intro_q6_minimum.png" width="600">
+> </div>
 
 > **Step 5 – Find the function value at the minimum**
 >
@@ -624,6 +631,7 @@ A rectangle is under the curve $y = 3 - x^2$ in the first quadrant. What are the
 > $$
 > A''(x) = -6x \implies A''(1) = -6 < 0 \quad \checkmark
 > $$
+>
 
 > **Result**
 >
@@ -632,6 +640,10 @@ A rectangle is under the curve $y = 3 - x^2$ in the first quadrant. What are the
 > $$
 > \text{width} = 1, \quad \text{height} = 2, \quad A_{\max} = 2
 > $$
+>
+> <div align="center">
+>  <img src="intro_q9_rectangle.png" width="400">
+> </div>
 
 ---
 ## 10. Infinite Series
@@ -693,3 +705,7 @@ Determine the final position of an ant that starts at the origin and moves accor
 > $$
 > \left(\frac{\pi}{4},\ \frac{\ln 2}{2}\right) \approx (0.785,\ 0.347)
 > $$
+>
+> <div align="center">
+>  <img src="intro_q10_ant.png" width="650">
+> </div>
