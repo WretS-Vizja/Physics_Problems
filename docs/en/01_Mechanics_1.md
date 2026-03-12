@@ -343,6 +343,58 @@ A river flows east at $2 \text{m/s}$. A boat that can travel at $5 \text{m/s}$ i
 
 An object's velocity is given by $v(t) = t^2 + 2t - 5$. If the object was at $x=4$ at $t=0$, what is its position and acceleration at time $t=3$?
 
+> **Problem**
+>
+> Determine $x(3)$ and $a(3)$.
+
+> **Idea**
+>
+> Integrate $v(t)$ to get position; differentiate $v(t)$ to get acceleration.
+
+> **Step 1 – Integrate to find $x(t)$**
+>
+> $$
+> x(t) = \int v(t)\, dt = \frac{t^3}{3} + t^2 - 5t + C
+> $$
+
+> **Step 2 – Apply initial condition $x(0) = 4$**
+>
+> $$
+> x(0) = C = 4
+> $$
+
+> **Step 3 – Write full position function**
+>
+> $$
+> x(t) = \frac{t^3}{3} + t^2 - 5t + 4
+> $$
+
+> **Step 4 – Evaluate at $t = 3$**
+>
+> $$
+> x(3) = \frac{27}{3} + 9 - 15 + 4 = 9 + 9 - 15 + 4 = 7
+> $$
+
+> **Step 5 – Find acceleration**
+>
+> $$
+> a(t) = \frac{dv}{dt} = 2t + 2
+> $$
+
+> **Step 6 – Evaluate at $t = 3$**
+>
+> $$
+> a(3) = 2(3) + 2 = 8 \text{ m/s}^2
+> $$
+
+> **Result**
+>
+> $$
+> x(3) = 7 \text{ m}, \qquad a(3) = 8 \text{ m/s}^2
+> $$
+
+---
+
 ## 7. Elimination of time and interpretation of acceleration
 
 The path equation is given in parametric form:
@@ -361,10 +413,89 @@ $$
 
 Calculate the centripetal acceleration of a person standing on the Earth's equator. The Earth's radius is approximately 6378 km.
 
+> **Problem**
+>
+> Find the centripetal acceleration $a_c$ due to Earth's rotation.
+
+> **Idea**
+>
+> Use $a_c = \omega^2 R$, where $\omega$ is Earth's angular velocity.
+
+> **Step 1 – Find Earth's angular velocity**
+>
+> Earth completes one rotation in $T = 24 \times 3600 = 86400$ s.
+>
+> $$
+> \omega = \frac{2\pi}{T} = \frac{2\pi}{86400} \approx 7.27 \times 10^{-5} \text{ rad/s}
+> $$
+
+> **Step 2 – Convert radius to meters**
+>
+> $$
+> R_E = 6378 \times 10^3 = 6.378 \times 10^6 \text{ m}
+> $$
+
+> **Step 3 – Compute centripetal acceleration**
+>
+> $$
+> a_c = \omega^2 R_E = (7.27 \times 10^{-5})^2 \times 6.378 \times 10^6
+> $$
+
+> **Step 4 – Calculate**
+>
+> $$
+> a_c = 5.285 \times 10^{-9} \times 6.378 \times 10^6 \approx 0.0337 \text{ m/s}^2
+> $$
+
+> **Result**
+>
+> $$
+> a_c \approx 0.034 \text{ m/s}^2
+> $$
+>
+> This is about $0.34\%$ of $g$, which is why we barely notice Earth's rotation.
+
+---
+
 ## 9. Momentum Comparison
 
 Which has greater momentum: a 2-gram fly flying at $10$ m/s or a 60-gram tennis ball moving at $1$ m/s?
 
+> **Problem**
+>
+> Compare the momenta of the fly and the tennis ball.
+
+> **Idea**
+>
+> Momentum is defined as $p = mv$. Compute both and compare.
+
+> **Step 1 – Compute fly's momentum**
+>
+> $$
+> p_1 = m_1 v_1 = 0.002 \times 10 = 0.02 \text{ kg·m/s}
+> $$
+
+> **Step 2 – Compute tennis ball's momentum**
+>
+> $$
+> p_2 = m_2 v_2 = 0.060 \times 1 = 0.06 \text{ kg·m/s}
+> $$
+
+> **Step 3 – Compare**
+>
+> $$
+> \frac{p_2}{p_1} = \frac{0.06}{0.02} = 3
+> $$
+
+> **Result**
+>
+> The **tennis ball** has greater momentum — **3 times** that of the fly.
+>
+> $$
+> p_{\text{ball}} = 0.06 \text{ kg·m/s} > p_{\text{fly}} = 0.02 \text{ kg·m/s}
+> $$
+
+---
 
 ## 10. Kinematics
 
@@ -378,6 +509,101 @@ where $a, b, \omega$ are positive constants.
 
 a) Find the equation of the point's trajectory,
 
+> **Problem**
+>
+> Find the geometric shape traced by the point.
+
+> **Idea**
+>
+> Use the identity $\cos^2\theta + \sin^2\theta = 1$ to eliminate $t$ from the $x$ and $y$ components. The $z$ component gives a linear rise.
+
+> **Step 1 – Extract trigonometric terms**
+>
+> $$
+> \frac{x}{a} = \cos\omega t, \qquad \frac{y}{b} = \sin\omega t
+> $$
+
+> **Step 2 – Apply the Pythagorean identity**
+>
+> $$
+> \left(\frac{x}{a}\right)^2 + \left(\frac{y}{b}\right)^2 = 1
+> $$
+
+> **Step 3 – Note the $z$ component**
+>
+> $$
+> z = bt \implies t = \frac{z}{b}
+> $$
+
+> **Result**
+>
+> The trajectory satisfies:
+>
+> $$
+> \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1, \qquad z = b \cdot t
+> $$
+>
+> This is a **helix** wound around an elliptical cross-section. When $a = b$, it becomes a **circular helix**.
+
+---
+
 b) Compute the path length of the point from time $t=0$ to $t=t_0$,
 
+> **Problem**
+>
+> Compute the arc length along the trajectory.
+
+> **Idea**
+>
+> Arc length is $\displaystyle s = \int_0^{t_0} |\vec{v}(t)|\, dt$.
+
+> **Step 1 – Differentiate $\vec{r}(t)$**
+>
+> $$
+> \vec{v}(t) = (-a\omega\sin\omega t,\ b\omega\cos\omega t,\ b)
+> $$
+
+> **Step 2 – Compute the speed**
+>
+> $$
+> |\vec{v}(t)| = \sqrt{a^2\omega^2\sin^2\omega t + b^2\omega^2\cos^2\omega t + b^2}
+> $$
+
+> **Step 3 – Simplify for special case $a = b$**
+>
+> $$
+> |\vec{v}| = \sqrt{a^2\omega^2(\sin^2\omega t + \cos^2\omega t) + b^2} = \sqrt{a^2\omega^2 + b^2}
+> $$
+>
+> This is **constant**, so the speed is uniform.
+
+> **Step 4 – Integrate for arc length (general case)**
+>
+> $$
+> s = \int_0^{t_0} \sqrt{a^2\omega^2\sin^2\omega t + b^2\omega^2\cos^2\omega t + b^2}\, dt
+> $$
+
+> **Step 5 – Closed form for $a = b$**
+>
+> $$
+> s = \sqrt{a^2\omega^2 + b^2}\cdot t_0
+> $$
+
+> **Result**
+>
+> For general $a \neq b$ the integral must be evaluated numerically.  
+> For the special case $a = b$:
+>
+> $$
+> s = t_0\sqrt{a^2\omega^2 + b^2}
+> $$
+
+---
+
 c) Draw the trajectory of this point using Python or interactive HTML. Discuss special cases.
+
+> **Idea**
+>
+> Plot the 3D helix using matplotlib, and show the special cases $a = b$ (circular helix) and $a \neq b$ (elliptic helix).
+
+
