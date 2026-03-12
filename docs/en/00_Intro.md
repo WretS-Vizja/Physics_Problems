@@ -515,6 +515,11 @@ A bicycle is 10 meters from a wall and moves towards it at a constant speed of $
 > **Idea**
 >
 > Instead of summing the infinite back-and-forth trips, use a time argument: the fly travels for the same total duration as the bicycle's journey.
+>
+><div align="center">
+>  <img src="intro_q7_fly.png" width="700">
+> </div>
+
 
 > **Step 1 – Find the time until the bicycle reaches the wall**
 >
