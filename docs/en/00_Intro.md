@@ -251,7 +251,7 @@ d) The angle between vectors $\vec{a}$ and $\vec{b}$.
 
 ## 2. Systems of Equations
 
-> Find the values of $x$ and $y$ that satisfy both equations: $2x + 3y = 12$ and $x - y = 1$.
+Find the values of $x$ and $y$ that satisfy both equations: $2x + 3y = 12$ and $x - y = 1$.
 
 > **Problem**
 
