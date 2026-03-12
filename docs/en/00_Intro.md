@@ -241,7 +241,12 @@ d) The angle between vectors $\vec{a}$ and $\vec{b}$.
 > $$
 >
 > The vectors form an **acute angle**.
+>
+> <div align="center">
+>  <img src="intro_q1cd_crossproduct.png" width="400">
+> </div>
 
+ 
 ---
 
 ## 2. Systems of Equations
