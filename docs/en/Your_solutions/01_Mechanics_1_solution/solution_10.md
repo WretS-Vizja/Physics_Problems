@@ -103,6 +103,15 @@ b) Compute the path length of the point from time $t=0$ to $t=t_0$,
 
 c) Draw the trajectory of this point using Python or interactive HTML. Discuss special cases.
 
+> **Discussion of special cases**
+>
+> | Condition | Shape |
+> |-----------|-------|
+> | $a = b$ | Circular helix on a cylinder of radius $a$ |
+> | $a \neq b$ | Elliptical helix on an elliptic cylinder |
+> | $b \to 0$ | Collapses to an ellipse in the $xy$-plane ($z = 0$) |
+> | $a = b$, $\omega \to 0$ | Nearly straight line along $z$-axis |
+ 
 > **Idea**
 >
 > Plot the 3D helix using matplotlib, and show the special cases $a = b$ (circular helix) and $a \neq b$ (elliptic helix).
