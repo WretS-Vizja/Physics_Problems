@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Young Çift Yarık Girişimi</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f1424; color: #eaeaea;
+         margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+  .container { max-width: 900px; width: 100%; }
+  h1 { text-align: center; color: #4ecdc4; margin-bottom: 6px; }
+  .subtitle { text-align: center; color: #a0a0b0; font-size: 0.9em; margin-bottom: 16px; }
+  .formula { text-align: center; color: #ffd166; font-family: monospace;
+             background: #1a2040; padding: 8px; border-radius: 5px; margin-bottom: 14px;
+             font-size: 0.92em; }
+  .controls { background: #1a2040; padding: 16px; border-radius: 10px; margin-bottom: 14px;
+              box-shadow: 0 3px 10px rgba(0,0,0,0.3); }
+  .control-row { display: flex; align-items: center; gap: 12px; margin: 9px 0; }
+  label { min-width: 180px; color: #c0c8ff; }
+  input[type=range] { flex: 1; accent-color: #4ecdc4; }
+  .value { min-width: 65px; text-align: right; color: #ffd166; font-family: monospace; }
+  canvas { background: #000; border: 1px solid #4ecdc4; border-radius: 5px; display: block; margin: 0 auto; }
+  .info { text-align: center; color: #9090a0; font-size: 0.88em; margin-top: 10px; }
+  .legend { display: flex; gap: 22px; justify-content: center; margin-top: 10px;
+            font-size: 0.85em; color: #a0a0b0; flex-wrap: wrap; }
+  .legend span.box { display: inline-block; width: 20px; height: 12px; vertical-align: middle;
+                     border-radius: 2px; margin-right: 5px; }
+  .stats { text-align: center; color: #4ecdc4; font-size: 0.9em; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Young Çift Yarık Girişimi</h1>
+  <div class="subtitle">İki yarık eşfazlı nokta kaynak gibi davranır. Sağdaki sarı şerit = ekrandaki yoğunluk deseni.</div>
+  <div class="formula">u(r,t) = (A/r₁)·sin(k r₁ − ωt) + (A/r₂)·sin(k r₂ − ωt)</div>
+
+  <div class="controls">
+    <div class="control-row">
+      <label>Yarık mesafesi d (px):</label>
+      <input type="range" id="d" min="20" max="300" step="1" value="100">
+      <span class="value" id="d-val">100</span>
+    </div>
+    <div class="control-row">
+      <label>Dalga boyu λ (px):</label>
+      <input type="range" id="lambda" min="15" max="100" step="1" value="40">
+      <span class="value" id="lambda-val">40</span>
+    </div>
+    <div class="control-row">
+      <label>Açısal hız ω:</label>
+      <input type="range" id="omega" min="0.5" max="8" step="0.1" value="3">
+      <span class="value" id="omega-val">3.0</span>
+    </div>
+  </div>
+
+  <canvas id="canvas" width="800" height="480"></canvas>
+  <div class="stats">Saçak aralığı ≈ <span id="fringe">-</span> px   (teorik: λL/d)</div>
+  <div class="legend">
+    <div><span class="box" style="background:#ff4040"></span>pozitif tepe</div>
+    <div><span class="box" style="background:#4080ff"></span>negatif çukur</div>
+    <div><span class="box" style="background:#ffeb3b"></span>yarıklar</div>
+    <div><span class="box" style="background:linear-gradient(to right,#000,#ffeb3b)"></span>ekran (yoğunluk)</div>
+  </div>
+  <div class="info">d arttıkça saçaklar sıklaşır. λ arttıkça saçaklar genişler. Merkezi maksimum daima simetri ekseni üzerindedir.</div>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+let d = 100, lambda = 40, omega = 3;
+const A = 60;
+const gridSize = 3;
+const slitX = 120;
+const screenX = W - 25;
+
+['d','lambda','omega'].forEach(id => {
+  document.getElementById(id).addEventListener('input', (e) => {
+    const val = parseFloat(e.target.value);
+    if (id==='d') { d = val; document.getElementById('d-val').textContent = val.toFixed(0); }
+    if (id==='lambda') { lambda = val; document.getElementById('lambda-val').textContent = val.toFixed(0); }
+    if (id==='omega') { omega = val; document.getElementById('omega-val').textContent = val.toFixed(1); }
+  });
+});
+
+let t = 0;
+const imageData = ctx.createImageData(W, H);
+const data = imageData.data;
+
+function animate() {
+  t += 0.06;
+  const k = 2*Math.PI/lambda;
+  const cy = H/2;
+  const s1 = { x: slitX, y: cy - d/2 };
+  const s2 = { x: slitX, y: cy + d/2 };
+  const scale = 20;
+
+  for (let py = 0; py < H; py += gridSize) {
+    for (let px = 0; px < W; px += gridSize) {
+      let R, G, B;
+      if (px < slitX) {
+        // Sol bölge: sadece birinci kaynaktan gelen düzlem dalgaya benzer görünüm
+        // (Basitlik: burayı koyu bırakıyoruz)
+        R = 15; G = 20; B = 35;
+      } else {
+        const r1 = Math.sqrt((px-s1.x)**2 + (py-s1.y)**2) + 1;
+        const r2 = Math.sqrt((px-s2.x)**2 + (py-s2.y)**2) + 1;
+        const u = (A/Math.sqrt(r1))*Math.sin(k*r1 - omega*t)
+                + (A/Math.sqrt(r2))*Math.sin(k*r2 - omega*t);
+        const val = Math.max(-1, Math.min(1, u/scale));
+        if (val > 0) { R = 255; G = Math.floor(255*(1-val)); B = Math.floor(80*(1-val)); }
+        else { R = Math.floor(80*(1+val)); G = Math.floor(140*(1+val)); B = 255; }
+      }
+      for (let dy = 0; dy < gridSize; dy++) {
+        for (let dx = 0; dx < gridSize; dx++) {
+          const i = ((py+dy)*W + (px+dx))*4;
+          data[i] = R; data[i+1] = G; data[i+2] = B; data[i+3] = 255;
+        }
+      }
+    }
+  }
+  ctx.putImageData(imageData, 0, 0);
+
+  // Engel (iki yarık arasındaki dikey çizgi)
+  ctx.strokeStyle = '#888';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(slitX, 0); ctx.lineTo(slitX, s1.y - 8);
+  ctx.moveTo(slitX, s1.y + 8); ctx.lineTo(slitX, s2.y - 8);
+  ctx.moveTo(slitX, s2.y + 8); ctx.lineTo(slitX, H);
+  ctx.stroke();
+
+  // Yarıklar
+  ctx.fillStyle = '#ffeb3b';
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 2;
+  [s1, s2].forEach(s => {
+    ctx.beginPath(); ctx.arc(s.x, s.y, 6, 0, 2*Math.PI); ctx.fill(); ctx.stroke();
+  });
+
+  // Ekran üzerindeki zaman-ortalamalı yoğunluk
+  const intensities = new Array(H);
+  let Imax = 0;
+  for (let py = 0; py < H; py++) {
+    const r1 = Math.sqrt((screenX-s1.x)**2 + (py-s1.y)**2);
+    const r2 = Math.sqrt((screenX-s2.x)**2 + (py-s2.y)**2);
+    const A1 = A/Math.sqrt(r1), A2 = A/Math.sqrt(r2);
+    const I = A1*A1 + A2*A2 + 2*A1*A2*Math.cos(k*(r2-r1));
+    intensities[py] = I;
+    if (I > Imax) Imax = I;
+  }
+  for (let py = 0; py < H; py++) {
+    const v = intensities[py] / Imax;
+    const r = Math.floor(255*v), g = Math.floor(235*v), b = Math.floor(30*v);
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    ctx.fillRect(screenX, py, 18, 1);
+  }
+  ctx.strokeStyle = '#4ecdc4';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(screenX, 0, 18, H);
+
+  // Teorik saçak aralığı
+  const L = screenX - slitX;
+  const fringe = (lambda * L) / d;
+  document.getElementById('fringe').textContent = fringe.toFixed(1);
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Dalga Kaynakları - Süperpozisyon</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f1424; color: #eaeaea;
+         margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+  .container { max-width: 900px; width: 100%; }
+  h1 { text-align: center; color: #4ecdc4; margin-bottom: 6px; }
+  .subtitle { text-align: center; color: #a0a0b0; font-size: 0.9em; margin-bottom: 16px; }
+  .formula { text-align: center; color: #ffd166; font-family: monospace;
+             background: #1a2040; padding: 8px; border-radius: 5px; margin-bottom: 14px; }
+  .controls { background: #1a2040; padding: 16px; border-radius: 10px; margin-bottom: 14px;
+              box-shadow: 0 3px 10px rgba(0,0,0,0.3); }
+  .control-row { display: flex; align-items: center; gap: 12px; margin: 9px 0; }
+  label { min-width: 140px; color: #c0c8ff; }
+  input[type=range] { flex: 1; accent-color: #4ecdc4; }
+  .value { min-width: 55px; text-align: right; color: #ffd166; font-family: monospace; }
+  .btn-row { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+  button { background: #4ecdc4; color: #0f1424; border: none; padding: 9px 16px;
+           border-radius: 5px; cursor: pointer; font-weight: 600; transition: 0.2s; }
+  button:hover { background: #6ee7dd; }
+  button.danger { background: #ef476f; color: white; }
+  canvas { background: #000; border: 1px solid #4ecdc4; border-radius: 5px;
+           cursor: crosshair; display: block; margin: 0 auto; }
+  .info { text-align: center; color: #9090a0; font-size: 0.9em; margin-top: 10px; }
+  .legend { display: flex; gap: 18px; justify-content: center; margin-top: 8px;
+            font-size: 0.85em; color: #a0a0b0; }
+  .legend span { display: inline-block; width: 20px; height: 12px; vertical-align: middle;
+                 border-radius: 2px; margin-right: 5px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Dalga Kaynakları – Süperpozisyon</h1>
+  <div class="subtitle">Tuvale tıklayarak kaynak ekleyin. Tüm kaynakların alanları toplanır.</div>
+  <div class="formula">u(r,t) = (A / |r − r₀|^α) · sin(k|r − r₀| − ωt)</div>
+
+  <div class="controls">
+    <div class="control-row">
+      <label>α (zayıflama):</label>
+      <input type="range" id="alpha" min="0" max="2" step="0.05" value="1">
+      <span class="value" id="alpha-val">1.00</span>
+    </div>
+    <div class="control-row">
+      <label>Dalga boyu λ (px):</label>
+      <input type="range" id="lambda" min="20" max="150" step="1" value="60">
+      <span class="value" id="lambda-val">60</span>
+    </div>
+    <div class="control-row">
+      <label>Açısal hız ω:</label>
+      <input type="range" id="omega" min="0.5" max="8" step="0.1" value="3">
+      <span class="value" id="omega-val">3.0</span>
+    </div>
+    <div class="btn-row">
+      <button onclick="addDemo()">2 Kaynak Ekle</button>
+      <button onclick="addFour()">4 Kaynak (Kare)</button>
+      <button class="danger" onclick="clearSources()">Temizle</button>
+      <span style="margin-left:10px; color:#a0a0b0;">Kaynak: <span id="count" style="color:#ffd166">0</span></span>
+    </div>
+  </div>
+
+  <canvas id="canvas" width="800" height="480"></canvas>
+  <div class="legend">
+    <div><span style="background:#ff4040"></span>pozitif tepe</div>
+    <div><span style="background:#4080ff"></span>negatif çukur</div>
+    <div><span style="background:#ffeb3b; border-radius:50%; width:12px;"></span>kaynak</div>
+  </div>
+  <div class="info">α = 0: hiç zayıflamaz (düzlem dalga gibi) • α = 1: silindirik dalga • α = 2: küresel dalga gibi hızlı zayıflar</div>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+const sources = [];
+let alpha = 1, lambda = 60, omega = 3;
+const A = 60;
+const gridSize = 4;
+
+canvas.addEventListener('click', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const sx = W / rect.width, sy = H / rect.height;
+  sources.push({ x: (e.clientX - rect.left)*sx, y: (e.clientY - rect.top)*sy });
+  document.getElementById('count').textContent = sources.length;
+});
+
+function clearSources() {
+  sources.length = 0;
+  document.getElementById('count').textContent = 0;
+}
+function addDemo() {
+  sources.push({x: W/2 - 100, y: H/2});
+  sources.push({x: W/2 + 100, y: H/2});
+  document.getElementById('count').textContent = sources.length;
+}
+function addFour() {
+  sources.push({x: W/2 - 120, y: H/2 - 90});
+  sources.push({x: W/2 + 120, y: H/2 - 90});
+  sources.push({x: W/2 - 120, y: H/2 + 90});
+  sources.push({x: W/2 + 120, y: H/2 + 90});
+  document.getElementById('count').textContent = sources.length;
+}
+
+['alpha','lambda','omega'].forEach(id => {
+  document.getElementById(id).addEventListener('input', (e) => {
+    const val = parseFloat(e.target.value);
+    if (id==='alpha') { alpha = val; document.getElementById('alpha-val').textContent = val.toFixed(2); }
+    if (id==='lambda') { lambda = val; document.getElementById('lambda-val').textContent = val.toFixed(0); }
+    if (id==='omega') { omega = val; document.getElementById('omega-val').textContent = val.toFixed(1); }
+  });
+});
+
+let t = 0;
+const imageData = ctx.createImageData(W, H);
+const data = imageData.data;
+
+function animate() {
+  t += 0.06;
+  const k = 2*Math.PI/lambda;
+  const scale = 80;
+
+  for (let py = 0; py < H; py += gridSize) {
+    for (let px = 0; px < W; px += gridSize) {
+      let u = 0;
+      for (const s of sources) {
+        const dx = px - s.x, dy = py - s.y;
+        const r = Math.sqrt(dx*dx + dy*dy) + 1;
+        const amp = A / Math.pow(r, alpha);
+        u += amp * Math.sin(k*r - omega*t);
+      }
+      const val = Math.max(-1, Math.min(1, u/scale));
+      let R, G, B;
+      if (val > 0) { R = 255; G = Math.floor(255*(1-val)); B = Math.floor(80*(1-val)); }
+      else { R = Math.floor(80*(1+val)); G = Math.floor(140*(1+val)); B = 255; }
+      for (let dy = 0; dy < gridSize; dy++) {
+        for (let dx = 0; dx < gridSize; dx++) {
+          const i = ((py+dy)*W + (px+dx))*4;
+          data[i] = R; data[i+1] = G; data[i+2] = B; data[i+3] = 255;
+        }
+      }
+    }
+  }
+  ctx.putImageData(imageData, 0, 0);
+
+  ctx.fillStyle = '#ffeb3b';
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 2;
+  for (const s of sources) {
+    ctx.beginPath(); ctx.arc(s.x, s.y, 6, 0, 2*Math.PI); ctx.fill(); ctx.stroke();
+  }
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+</body>
+</html>

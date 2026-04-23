@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Sönümlü Harmonik Osilatör</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f1424; color: #eaeaea;
+         margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+  .container { max-width: 1050px; width: 100%; }
+  h1 { text-align: center; color: #4ecdc4; margin-bottom: 8px; }
+  .subtitle { text-align: center; color: #a0a0b0; margin-bottom: 18px; font-size: 0.95em; }
+  .controls { background: #1a2040; padding: 18px; border-radius: 10px; margin-bottom: 16px;
+              box-shadow: 0 3px 10px rgba(0,0,0,0.3); }
+  .control-row { display: flex; align-items: center; gap: 12px; margin: 9px 0; }
+  label { min-width: 130px; color: #c0c8ff; }
+  input[type=range] { flex: 1; accent-color: #4ecdc4; }
+  .value { min-width: 55px; text-align: right; color: #ffd166; font-family: monospace; }
+  .btn-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
+  button { background: #4ecdc4; color: #0f1424; border: none; padding: 9px 16px;
+           border-radius: 5px; cursor: pointer; font-weight: 600; transition: 0.2s; }
+  button:hover { background: #6ee7dd; transform: translateY(-1px); }
+  button.preset { background: #3a86ff; color: white; }
+  button.preset.critical { background: #06d6a0; color: #0f1424; }
+  button.preset.over { background: #ef476f; color: white; }
+  .case-label { text-align: center; font-size: 1.15em; padding: 11px; border-radius: 6px;
+                margin: 12px 0; font-weight: bold; }
+  .underdamped { background: #3a86ff; }
+  .critical { background: #06d6a0; color: #0f1424; }
+  .overdamped { background: #ef476f; }
+  .canvases { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
+  .canvas-box { text-align: center; }
+  .canvas-box h3 { margin: 8px 0; color: #4ecdc4; font-weight: normal; }
+  canvas { background: #060a18; border: 1px solid #4ecdc4; border-radius: 5px; display: block; }
+  .info { font-size: 0.85em; color: #9090a0; text-align: center; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Sönümlü Harmonik Osilatör</h1>
+  <div class="subtitle">m ẍ + b ẋ + k x = 0   –   RK4 sayısal çözüm</div>
+
+  <div class="controls">
+    <div class="control-row">
+      <label>Kütle m:</label>
+      <input type="range" id="m" min="0.1" max="5" step="0.1" value="1">
+      <span class="value" id="m-val">1.00</span>
+    </div>
+    <div class="control-row">
+      <label>Yay sabiti k:</label>
+      <input type="range" id="k" min="0.1" max="10" step="0.1" value="4">
+      <span class="value" id="k-val">4.00</span>
+    </div>
+    <div class="control-row">
+      <label>Sönüm b:</label>
+      <input type="range" id="b" min="0" max="10" step="0.01" value="0.5">
+      <span class="value" id="b-val">0.50</span>
+    </div>
+    <div class="control-row">
+      <label>Başlangıç x₀:</label>
+      <input type="range" id="x0" min="-2" max="2" step="0.1" value="1">
+      <span class="value" id="x0-val">1.00</span>
+    </div>
+    <div class="control-row">
+      <label>Başlangıç v₀:</label>
+      <input type="range" id="v0" min="-5" max="5" step="0.1" value="0">
+      <span class="value" id="v0-val">0.00</span>
+    </div>
+    <div class="btn-row">
+      <button class="preset" onclick="setPreset('under')">Az Sönümlü</button>
+      <button class="preset critical" onclick="setPreset('critical')">Kritik</button>
+      <button class="preset over" onclick="setPreset('over')">Aşırı Sönümlü</button>
+      <button onclick="restart()">Yeniden Başlat</button>
+    </div>
+  </div>
+
+  <div id="case" class="case-label"></div>
+
+  <div class="canvases">
+    <div class="canvas-box">
+      <h3>x(t) – Konum grafiği</h3>
+      <canvas id="xtCanvas" width="500" height="320"></canvas>
+    </div>
+    <div class="canvas-box">
+      <h3>Faz portresi (x, ẋ)</h3>
+      <canvas id="phaseCanvas" width="500" height="320"></canvas>
+    </div>
+  </div>
+  <div class="info">Sarı nokta güncel durumu, mavi/kırmızı eğriler geçmişi gösterir.</div>
+</div>
+
+<script>
+let m=1, k=4, b=0.5, x0=1, v0=0;
+let x, v, t;
+let history = [], phaseHistory = [];
+const Tmax = 25;
+
+const xtCanvas = document.getElementById('xtCanvas');
+const xtCtx = xtCanvas.getContext('2d');
+const phaseCanvas = document.getElementById('phaseCanvas');
+const phaseCtx = phaseCanvas.getContext('2d');
+
+function deriv(x, v) {
+  return { dx: v, dv: -(b/m)*v - (k/m)*x };
+}
+
+function rk4(x, v, dt) {
+  const k1 = deriv(x, v);
+  const k2 = deriv(x + k1.dx*dt/2, v + k1.dv*dt/2);
+  const k3 = deriv(x + k2.dx*dt/2, v + k2.dv*dt/2);
+  const k4 = deriv(x + k3.dx*dt, v + k3.dv*dt);
+  return {
+    x: x + dt/6*(k1.dx + 2*k2.dx + 2*k3.dx + k4.dx),
+    v: v + dt/6*(k1.dv + 2*k2.dv + 2*k3.dv + k4.dv)
+  };
+}
+
+function classify() {
+  const crit = 2*Math.sqrt(m*k);
+  const el = document.getElementById('case');
+  if (Math.abs(b - crit) < 0.08) {
+    el.textContent = `Kritik Sönümlü   (b ≈ 2√(mk) = ${crit.toFixed(3)})`;
+    el.className = 'case-label critical';
+  } else if (b < crit) {
+    el.textContent = `Az Sönümlü   (b = ${b.toFixed(2)} < 2√(mk) = ${crit.toFixed(2)})`;
+    el.className = 'case-label underdamped';
+  } else {
+    el.textContent = `Aşırı Sönümlü   (b = ${b.toFixed(2)} > 2√(mk) = ${crit.toFixed(2)})`;
+    el.className = 'case-label overdamped';
+  }
+}
+
+function restart() {
+  m = parseFloat(document.getElementById('m').value);
+  k = parseFloat(document.getElementById('k').value);
+  b = parseFloat(document.getElementById('b').value);
+  x0 = parseFloat(document.getElementById('x0').value);
+  v0 = parseFloat(document.getElementById('v0').value);
+  x = x0; v = v0; t = 0;
+  history = []; phaseHistory = [];
+  classify();
+}
+
+function updateLabels() {
+  ['m','k','b','x0','v0'].forEach(id => {
+    document.getElementById(id+'-val').textContent =
+      parseFloat(document.getElementById(id).value).toFixed(2);
+  });
+}
+
+function setPreset(type) {
+  document.getElementById('m').value = 1;
+  document.getElementById('k').value = 4;
+  document.getElementById('x0').value = 1;
+  document.getElementById('v0').value = 0;
+  if (type==='under') document.getElementById('b').value = 0.5;
+  if (type==='critical') document.getElementById('b').value = 4;
+  if (type==='over') document.getElementById('b').value = 8;
+  updateLabels(); restart();
+}
+
+['m','k','b','x0','v0'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => { updateLabels(); restart(); });
+});
+
+function drawAxes(ctx, w, h, xLabel, yLabel, cx, cy) {
+  ctx.strokeStyle = '#3a3f5a';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(30, cy); ctx.lineTo(w-10, cy);
+  ctx.moveTo(cx, 12); ctx.lineTo(cx, h-20);
+  ctx.stroke();
+  ctx.fillStyle = '#9090a0';
+  ctx.font = '13px sans-serif';
+  ctx.fillText(xLabel, w-20, cy-6);
+  ctx.fillText(yLabel, cx+6, 18);
+}
+
+function drawXt() {
+  const w = 500, h = 320;
+  xtCtx.clearRect(0,0,w,h);
+  drawAxes(xtCtx, w, h, 't', 'x', 40, h/2);
+  if (history.length < 2) return;
+  const xMax = Math.max(1.2, ...history.map(p => Math.abs(p.x))) * 1.1;
+  xtCtx.strokeStyle = '#4ecdc4';
+  xtCtx.lineWidth = 2;
+  xtCtx.beginPath();
+  history.forEach((p, i) => {
+    const px = 40 + (p.t/Tmax) * (w-50);
+    const py = h/2 - (p.x/xMax) * (h/2 - 20);
+    if (i===0) xtCtx.moveTo(px, py); else xtCtx.lineTo(px, py);
+  });
+  xtCtx.stroke();
+  const last = history[history.length-1];
+  const px = 40 + (last.t/Tmax) * (w-50);
+  const py = h/2 - (last.x/xMax) * (h/2 - 20);
+  xtCtx.fillStyle = '#ffd166';
+  xtCtx.beginPath(); xtCtx.arc(px, py, 5, 0, 2*Math.PI); xtCtx.fill();
+}
+
+function drawPhase() {
+  const w = 500, h = 320, cx = w/2, cy = h/2;
+  phaseCtx.clearRect(0,0,w,h);
+  drawAxes(phaseCtx, w, h, 'x', 'ẋ', cx, cy);
+  if (phaseHistory.length < 2) return;
+  const xMax = Math.max(1.2, ...phaseHistory.map(p => Math.abs(p.x))) * 1.1;
+  const vMax = Math.max(1.2, ...phaseHistory.map(p => Math.abs(p.v))) * 1.1;
+  phaseCtx.strokeStyle = '#ff6b6b';
+  phaseCtx.lineWidth = 2;
+  phaseCtx.beginPath();
+  phaseHistory.forEach((p, i) => {
+    const px = cx + (p.x/xMax) * (cx-30);
+    const py = cy - (p.v/vMax) * (cy-20);
+    if (i===0) phaseCtx.moveTo(px, py); else phaseCtx.lineTo(px, py);
+  });
+  phaseCtx.stroke();
+  const last = phaseHistory[phaseHistory.length-1];
+  const px = cx + (last.x/xMax) * (cx-30);
+  const py = cy - (last.v/vMax) * (cy-20);
+  phaseCtx.fillStyle = '#ffd166';
+  phaseCtx.beginPath(); phaseCtx.arc(px, py, 5, 0, 2*Math.PI); phaseCtx.fill();
+}
+
+function animate() {
+  const dt = 0.02;
+  for (let i=0; i<2; i++) {
+    if (t < Tmax) {
+      const r = rk4(x, v, dt);
+      x = r.x; v = r.v; t += dt;
+      history.push({t, x});
+      phaseHistory.push({x, v});
+    }
+  }
+  drawXt(); drawPhase();
+  requestAnimationFrame(animate);
+}
+
+updateLabels(); restart(); animate();
+</script>
+</body>
+</html>
